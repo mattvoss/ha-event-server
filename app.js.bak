@@ -1,0 +1,150 @@
+/*
+  Simple example that takes a command line provided serial port destination and routes the output to a file of the same name with .log appended to the port name.
+
+  usage: node logger.js /dev/tty.usbserial <baudrate>
+
+*/
+
+var SerialPort = require("serialport");
+var fs = require("fs");
+var moment = require("moment");
+var hexy = require('hexy');
+var port = process.argv[2];
+var baudrate = process.argv[3];
+var active = false;
+var bitRcvdCount = 0;
+
+var houseCode =  {'0x6' : 'A', '0x7' : 'B', '0x4' : 'C',
+          '0x5' : 'D', '0x8' : 'E', '0x9' : 'F',
+          '0xA' : 'G', '0xB' : 'H', '0xE' : 'I',
+          '0xF' : 'J', '0xC' : 'K', '0xD' : 'L',
+          '0x0' : 'M', '0x1' : 'N', '0x2' : 'O',
+          '0x3' : 'P'};
+var unitCode = {
+    "00" : {"value":1, "state": "ON"}, "10" : {"value":2, "state": "ON"},
+    "08" : {"value":3, "state": "ON"}, "18" : {"value":4, "state": "ON"},
+    "40" : {"value":5, "state": "ON"}, "50" : {"value":6, "state": "ON"},
+    "48" : {"value":7, "state": "ON"}, "58" : {"value":8, "state": "ON"},
+    "00" : {"value":9, "state": "ON"}, "10" : {"value":10, "state": "ON"},
+    "08" : {"value":11, "state": "ON"}, "18" : {"value":12, "state": "ON"},
+    "40" : {"value":13, "state": "ON"}, "50" : {"value":14, "state": "ON"},
+    "48" : {"value":15, "state": "ON"}, "58" : {"value":16, "state": "ON"},
+    "20" : {"value":1, "state": "OFF"}, "30" : {"value":2, "state": "OFF"},
+    "28" : {"value":3, "state": "OFF"}, "38" : {"value":4, "state": "OFF"},
+    "60" : {"value":5, "state": "OFF"}, "70" : {"value":6, "state": "OFF"},
+    "68" : {"value":7, "state": "OFF"}, "78" : {"value":8, "state": "OFF"},
+    "20" : {"value":9, "state": "OFF"}, "30" : {"value":10, "state": "OFF"},
+    "28" : {"value":11, "state": "OFF"}, "38" : {"value":12, "state": "OFF"},
+    "60" : {"value":13, "state": "OFF"}, "70" : {"value":14, "state": "OFF"},
+    "68" : {"value":15, "state": "OFF"},"78" : {"value":16, "state": "OFF"}
+}
+
+String.prototype.reverse=function(){return this.split("").reverse().join("");}
+
+function swap8(val) {
+    return ((val & 0x1) << 7) | ((val & 0x2) << 5) | ((val & 0x4) << 3) | ((val & 0x8) << 1) | ((val >> 1) & 0x8) | ((val >> 3) & 0x4) | ((val >> 5) & 0x2) | ((val >> 7) & 0x1);
+}
+
+function attemptLogging(fd, port, baudrate) {
+  if (!active) {
+    fs.stat(port,  function (err, stats) {
+      if (!err) {
+        active = true;
+
+        var serialPort = new SerialPort.SerialPort(port, {
+          baudrate: baudrate
+        });
+        fs.write(fd, "\n------------------------------------------------------------\nOpening SerialPort: "+target+" at "+moment().format("YYYY-MM-DDTHH:mm:ss")+"\n------------------------------------------------------------\n");
+        serialPort.on("data", function (data) {
+            console.log("bitRcvdCount:", bitRcvdCount);
+            var buf = new Buffer(4);
+            console.log("Raw", hexy.hexy(data));
+            fs.write(fd, moment().format("YYYY-MM-DDTHH:mm:ss")+" "+data.toString('hex')+"\n");
+            var house = "0x"+data.toString('hex',0,1).charAt(0);
+            var unit = (data.toString('hex')).substr(4,2);
+            var uc = null;
+            var action = null;
+
+            house = houseCode[house];
+            console.log("house", house);
+
+            if ((data[0] & 0xf0) == (data[1] & 0xf0) && data[2] == (~data[3] & 0xff) &&
+                (data[0] & 0x0f) == (~data[1] & 0x0f)) {
+
+                if (data[2] == 0) {
+                    console.log("open");
+                    action = "open";
+                } else {
+                    console.log("close");
+                    action = "close";
+                }
+
+            } else if (data[0] == (~data[1] & 0xff) && data[2] == (~data[3] & 0xff)) {
+
+                if (data[2] & 0x80) {
+                    if (data[2] & 0x10) {
+                        console.log("dim");
+                        action = "dim";
+                    } else {
+                        console.log("bright");
+                        action = "bright";
+                    }
+
+                } else {
+                    uc = ((data[2] & 0x10) >> 4) |
+                         ((data[2] & 0x8) >> 2)  |
+                         ((data[2] & 0x40) >> 4) |
+                         ((data[0] & 0x04) << 1);
+                    uc += 1;
+                    console.log("uc: ", uc);
+                    if (data[2] & 0x20) {
+                        console.log("off");
+                        action = "off";
+                    } else {
+                        console.log("on");
+                        action = "on";
+                    }
+
+                }
+
+            } else {
+                uc = "unk";
+                console.log("unk");
+            }
+
+            //console.log("code: "+house+unit.value);
+            fs.write(fd, moment().format("YYYY-MM-DDTHH:mm:ss")+" "+house+uc+" "+action+"\n");
+            bitRcvdCount = (bitRcvdCount < 2) ? bitRcvdCount + 1 : 0;
+        });
+        serialPort.on("close", function (data) {
+          active = false;
+          fs.write(fd, "\n------------------------------------------------------------\nClosing SerialPort: "+target+" at "+Date.now()+"\n------------------------------------------------------------\n");
+        });
+      }
+    });
+  }
+}
+
+if (!port) {
+  console.log("You must specify a serial port location.");
+} else {
+  var target = port.split("/");
+  target = target[target.length-1]+".log";
+  if (!baudrate) {
+    baudrate = 4800;
+  }
+  fs.open("./"+target, 'a', function (err, fd) {
+    setInterval(function () {
+      if (!active) {
+        try {
+          attemptLogging(fd, port, baudrate);
+        } catch (e) {
+          // Error means port is not available for listening.
+          active = false;
+        }
+      }
+    }, 1000);
+  });
+}
+
+

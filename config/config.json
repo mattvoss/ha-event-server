@@ -1,0 +1,24 @@
+{
+  "development": {
+    "host": "boundaries.lxc",
+    "username": "postgres",
+    "password": "voss2474",
+    "database": "politkz",
+    "dialect": "postgres",
+    "port": 5432
+  },
+  "production": {
+    "host": "boundaries.lxc",
+    "username": "postgres",
+    "password": "voss2474",
+    "database": "politkz",
+    "dialect": "postgres"
+  },
+  "test": {
+    "host": "boundaries.lxc",
+    "username": "postgres",
+    "password": "voss2474",
+    "database": "politkz",
+    "dialect": "postgres"
+  }
+}

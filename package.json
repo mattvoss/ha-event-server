@@ -1,0 +1,17 @@
+{
+    "name": "ha-event-server",
+    "description": "HA Event Server",
+    "version": "0.1.0",
+    "author": "Matt Voss",
+    "repo": "git@github.com:mattvoss/ha-event-server.git",
+    "keywords": [ ],
+    "dependencies": {
+        "serialport": 	"latest",
+        "moment"	:	"latest",
+        "hexy"		:	"latest",
+        "sequelize" :   "latest",
+        "redis"     :   "latest",
+        "nconf"     :   "latest"
+    }
+}
+

@@ -1,0 +1,10 @@
+node_modules/
+settings.json
+access.log
+public/
+lib/
+bower_components/
+/app.log
+/reg.dor.key
+/reg.dor.tamu.edu.crt
+share
