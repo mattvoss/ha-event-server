@@ -1,0 +1,14 @@
+{
+  "name": "ha-events-server",
+  "version": "0.1.0",
+  "dependencies": {
+    "angular-lodash": "*",
+    "angular": "*",
+    "angular-material": "*",
+    "jquery": "*",
+    "moment": "*",
+    "angular-moment": "*",
+    "handlebars": "*",
+    "angular-socket-io": "*"
+  }
+}
