@@ -133,9 +133,9 @@
                       (out[0] & 0x0f) === (~out[1] & 0x0f)) {
                       house = "0x"+out.toString('hex',0,1);
                       uc = "";
-                      if (out[2] & 0x20) {
+                      if (out[2] & 0x01 === 0x01) {
                           //console.log("off");
-                          action = "close";
+                          action = "closed";
                       } else {
                           //console.log("on");
                           action = "open";
