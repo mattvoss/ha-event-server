@@ -30,7 +30,7 @@
               '0x3' : 'P'},
       db = {}, models = {}, configFile, config, client, pubClient;
 
-  configFile = process.cwd()+'/../config/settings.json';
+  configFile = process.cwd()+'/config/settings.json';
 
   config = nconf
   .argv()
