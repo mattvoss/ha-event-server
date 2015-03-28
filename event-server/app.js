@@ -131,71 +131,76 @@
 
                   if ((out[0] & 0xf0) === (out[1] & 0xf0) && out[2] === (~out[3] & 0xff) &&
                       (out[0] & 0x0f) === (~out[1] & 0x0f)) {
-                      house = "0x"+out.toString('hex',0,1);
-                      uc = "";
-                      if (parseInt(out.toString('hex',2,3),10) >= 80) {
-                          //console.log("off");
-                          action = "closed";
-                      } else {
-                          //console.log("on");
-                          action = "open";
-                      }
+                    var status = {
+                          "04": {action: "open", delay: "min", battery: "normal"},
+                          "84": {action: "closed", delay: "min", battery: "normal"},
+                          "00": {action: "open", delay: "max", battery: "normal"},
+                          "80": {action: "closed", delay: "max", battery: "normal"},
+                          "01": {action: "open", delay: "min", battery: "low"},
+                          "81": {action: "closed", delay: "min", battery: "low"},
+                          "05": {action: "open", delay: "max", battery: "low"},
+                          "85": {action: "closed", delay: "max", battery: "low"},
+                        },
+                        stat = status[unit];
+                    house = "0x"+out.toString('hex',0,1);
+                    uc = "";
+                    action = stat.action;
 
                   } else if (out[0] === (~out[1] & 0xff) && out[2] === (~out[3] & 0xff)) {
 
-                      if (out[2] & 0x80) {
-                          if (out[2] & 0x10) {
-                              //console.log("dim");
-                              action = "dim";
-                          } else {
-                              //console.log("bright");
-                              action = "bright";
-                          }
-
+                    if (out[2] & 0x80) {
+                      if (out[2] & 0x10) {
+                        //console.log("dim");
+                        action = "dim";
                       } else {
-                          uc = ((out[2] & 0x10) >> 4) |
-                               ((out[2] & 0x8) >> 2)  |
-                               ((out[2] & 0x40) >> 4) |
-                               ((out[0] & 0x04) << 1);
-                          uc += 1;
-                          //console.log("uc: ", uc);
-                          if (out[2] & 0x20) {
-                              //console.log("off");
-                              action = "off";
-                          } else {
-                              //console.log("on");
-                              action = "on";
-                          }
-
+                        //console.log("bright");
+                        action = "bright";
                       }
+
+                    } else {
+                      uc = ((out[2] & 0x10) >> 4) |
+                           ((out[2] & 0x8) >> 2)  |
+                           ((out[2] & 0x40) >> 4) |
+                           ((out[0] & 0x04) << 1);
+                      uc += 1;
+                      //console.log("uc: ", uc);
+                      if (out[2] & 0x20) {
+                        //console.log("off");
+                        action = "off";
+                      } else {
+                        //console.log("on");
+                        action = "on";
+                      }
+
+                    }
 
                   } else {
-                      uc = "";
-                      if (out[2] & 0x80) {
-                          if (out[2] & 0x10) {
-                              //console.log("dim");
-                              action = "dim";
-                          } else {
-                              //console.log("bright");
-                              action = "bright";
-                          }
+                    uc = "";
+                    if (out[2] & 0x80) {
+                        if (out[2] & 0x10) {
+                            //console.log("dim");
+                            action = "dim";
+                        } else {
+                            //console.log("bright");
+                            action = "bright";
+                        }
 
-                      } else {
-                          uc = ((out[2] & 0x10) >> 4) |
-                               ((out[2] & 0x8) >> 2)  |
-                               ((out[2] & 0x40) >> 4) |
-                               ((out[0] & 0x04) << 1);
-                          uc += 1;
-                          //console.log("uc: ", uc);
-                          if (out[2] & 0x20) {
-                              //console.log("off");
-                              action = "off";
-                          } else {
-                              //console.log("on");
-                              action = "on";
-                          }
+                    } else {
+                        uc = ((out[2] & 0x10) >> 4) |
+                             ((out[2] & 0x8) >> 2)  |
+                             ((out[2] & 0x40) >> 4) |
+                             ((out[0] & 0x04) << 1);
+                        uc += 1;
+                        //console.log("uc: ", uc);
+                        if (out[2] & 0x20) {
+                            //console.log("off");
+                            action = "off";
+                        } else {
+                            //console.log("on");
+                            action = "on";
+                        }
 
-                      }
+                    }
                   }
 
                   var log = moment().format("YYYY-MM-DDTHH:mm:ss")+" " + " " + house+uc + " " + action;

@@ -13,7 +13,7 @@
    height="765"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.91 r"
    sodipodi:docname="floorplan.svg">
   <defs
      id="defs4" />
@@ -24,18 +24,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.7751621"
-     inkscape:cx="452.21356"
-     inkscape:cy="675.49928"
+     inkscape:zoom="0.9"
+     inkscape:cx="582.26963"
+     inkscape:cy="408.83261"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="motionSensorLayer"
      showgrid="true"
      showguides="false"
      inkscape:snap-global="false"
      inkscape:window-width="1458"
      inkscape:window-height="978"
      inkscape:window-x="124"
-     inkscape:window-y="24"
+     inkscape:window-y="34"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -200,27 +200,17 @@
      id="motionSensorLayer"
      inkscape:label="Motion Sensors">
     <g
-       transform="translate(653.42802,7.525963)"
+       transform="matrix(2.5,0,0,2.5,638.68469,35.750358)"
        id="M3"
        class="sensors">
       <circle
-         d="m 14.3,10.5 c 0,1.656854 -1.343146,3 -3,3 -1.6568541,0 -2.9999998,-1.343146 -2.9999998,-3 0,-1.6568542 1.3431457,-3 2.9999998,-3 1.656854,0 3,1.3431458 3,3 z"
-         sodipodi:ry="3"
-         sodipodi:rx="3"
-         sodipodi:cy="10.5"
-         sodipodi:cx="11.3"
          class="core"
          cx="11.3"
          cy="10.5"
          r="3"
          id="circle40" />
       <circle
-         d="m 17.3,10.5 c 0,3.313708 -2.686291,6 -6,6 -3.3137083,0 -5.9999998,-2.686292 -5.9999998,-6 0,-3.3137085 2.6862915,-6 5.9999998,-6 3.313709,0 6,2.6862915 6,6 z"
-         style="fill:none;stroke:red;stroke-miterlimit:10"
-         sodipodi:ry="6"
-         sodipodi:rx="6"
-         sodipodi:cy="10.5"
-         sodipodi:cx="11.3"
+         style="fill:none;stroke:#ff0000;stroke-miterlimit:10"
          class="ring"
          stroke-miterlimit="10"
          cx="11.3"
@@ -229,27 +219,17 @@
          id="circle42" />
     </g>
     <g
-       transform="translate(447.24968,395.65953)"
+       transform="matrix(2.5,0,0,2.5,429.18857,345.46509)"
        id="M4"
        class="sensors">
       <circle
-         d="m 14.3,10.5 c 0,1.656854 -1.343146,3 -3,3 -1.6568541,0 -2.9999998,-1.343146 -2.9999998,-3 0,-1.6568542 1.3431457,-3 2.9999998,-3 1.656854,0 3,1.3431458 3,3 z"
-         sodipodi:ry="3"
-         sodipodi:rx="3"
-         sodipodi:cy="10.5"
-         sodipodi:cx="11.3"
          class="core"
          cx="11.3"
          cy="10.5"
          r="3"
          id="circle40-8" />
       <circle
-         d="m 17.3,10.5 c 0,3.313708 -2.686291,6 -6,6 -3.3137083,0 -5.9999998,-2.686292 -5.9999998,-6 0,-3.3137085 2.6862915,-6 5.9999998,-6 3.313709,0 6,2.6862915 6,6 z"
-         style="fill:none;stroke:red;stroke-miterlimit:10"
-         sodipodi:ry="6"
-         sodipodi:rx="6"
-         sodipodi:cy="10.5"
-         sodipodi:cx="11.3"
+         style="fill:none;stroke:#ff0000;stroke-miterlimit:10"
          class="ring"
          stroke-miterlimit="10"
          cx="11.3"
@@ -258,27 +238,17 @@
          id="circle42-7" />
     </g>
     <g
-       transform="translate(412.32328,425.51596)"
+       transform="matrix(2.5,0,0,2.5,383.10442,434.88256)"
        id="M1"
        class="sensors">
       <circle
-         d="m 14.3,10.5 c 0,1.656854 -1.343146,3 -3,3 -1.6568541,0 -2.9999998,-1.343146 -2.9999998,-3 0,-1.6568542 1.3431457,-3 2.9999998,-3 1.656854,0 3,1.3431458 3,3 z"
-         sodipodi:ry="3"
-         sodipodi:rx="3"
-         sodipodi:cy="10.5"
-         sodipodi:cx="11.3"
          class="core"
          cx="11.3"
          cy="10.5"
          r="3"
          id="circle40-6" />
       <circle
-         d="m 17.3,10.5 c 0,3.313708 -2.686291,6 -6,6 -3.3137083,0 -5.9999998,-2.686292 -5.9999998,-6 0,-3.3137085 2.6862915,-6 5.9999998,-6 3.313709,0 6,2.6862915 6,6 z"
-         style="fill:none;stroke:red;stroke-miterlimit:10"
-         sodipodi:ry="6"
-         sodipodi:rx="6"
-         sodipodi:cy="10.5"
-         sodipodi:cx="11.3"
+         style="fill:none;stroke:#ff0000;stroke-miterlimit:10"
          class="ring"
          stroke-miterlimit="10"
          cx="11.3"
@@ -287,27 +257,17 @@
          id="circle42-0" />
     </g>
     <g
-       transform="translate(419.64655,615.92111)"
+       transform="matrix(2.5,0,0,2.5,387.99971,581.17339)"
        id="M2"
        class="sensors">
       <circle
-         d="m 14.3,10.5 c 0,1.656854 -1.343146,3 -3,3 -1.6568541,0 -2.9999998,-1.343146 -2.9999998,-3 0,-1.6568542 1.3431457,-3 2.9999998,-3 1.656854,0 3,1.3431458 3,3 z"
-         sodipodi:ry="3"
-         sodipodi:rx="3"
-         sodipodi:cy="10.5"
-         sodipodi:cx="11.3"
          class="core"
          cx="11.3"
          cy="10.5"
          r="3"
          id="circle40-1" />
       <circle
-         d="m 17.3,10.5 c 0,3.313708 -2.686291,6 -6,6 -3.3137083,0 -5.9999998,-2.686292 -5.9999998,-6 0,-3.3137085 2.6862915,-6 5.9999998,-6 3.313709,0 6,2.6862915 6,6 z"
-         style="fill:none;stroke:red;stroke-miterlimit:10"
-         sodipodi:ry="6"
-         sodipodi:rx="6"
-         sodipodi:cy="10.5"
-         sodipodi:cx="11.3"
+         style="fill:none;stroke:#ff0000;stroke-miterlimit:10"
          class="ring"
          stroke-miterlimit="10"
          cx="11.3"
@@ -316,27 +276,17 @@
          id="circle42-1" />
     </g>
     <g
-       transform="translate(633.71151,455.93572)"
+       transform="matrix(2.5,0,0,2.5,606.73041,461.39011)"
        id="M7"
        class="sensors">
       <circle
-         d="m 14.3,10.5 c 0,1.656854 -1.343146,3 -3,3 -1.6568541,0 -2.9999998,-1.343146 -2.9999998,-3 0,-1.6568542 1.3431457,-3 2.9999998,-3 1.656854,0 3,1.3431458 3,3 z"
-         sodipodi:ry="3"
-         sodipodi:rx="3"
-         sodipodi:cy="10.5"
-         sodipodi:cx="11.3"
          class="core"
          cx="11.3"
          cy="10.5"
          r="3"
          id="circle40-3" />
       <circle
-         d="m 17.3,10.5 c 0,3.313708 -2.686291,6 -6,6 -3.3137083,0 -5.9999998,-2.686292 -5.9999998,-6 0,-3.3137085 2.6862915,-6 5.9999998,-6 3.313709,0 6,2.6862915 6,6 z"
-         style="fill:none;stroke:red;stroke-miterlimit:10"
-         sodipodi:ry="6"
-         sodipodi:rx="6"
-         sodipodi:cy="10.5"
-         sodipodi:cx="11.3"
+         style="fill:none;stroke:#ff0000;stroke-miterlimit:10"
          class="ring"
          stroke-miterlimit="10"
          cx="11.3"
