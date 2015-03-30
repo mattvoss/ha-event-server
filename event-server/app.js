@@ -18,7 +18,7 @@
       redis = require("redis"),
       nconf = require('nconf'),
       Sequelize = require("sequelize"),
-      port = process.argv[2],
+      port,
       baudrate = process.argv[3],
       active = false,
       bitRcvd = new Buffer(0),
@@ -77,6 +77,12 @@
           timestamps: false
         }
   });
+
+  if (config.get("serial:port")) {
+    port = config.get("serial:port");
+  } else {
+    port = "/dev/ttyUSB0";
+  }
 
   models.Logs = db.ha.define('logs', {
     id:                   { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
@@ -144,7 +150,7 @@
                         stat = status[unit];
                     house = "0x"+out.toString('hex',0,1);
                     uc = "";
-                    if ("action" in stat) {
+                    if (typeof stat != "undefined" && "action" in stat) {
                       action = stat.action;
                     } else {
                       action = null;
