@@ -16,7 +16,15 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/app.min.js"></script>
 </head>
-<body ng-controller="HaMain">
-  {{{svg}}}
+<body layout="column" ng-controller="HaMain">
+  <md-toolbar layout="row">
+    <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <h1 class="md-toolbar-tools" layout-align-gt-sm="center">Home - Security Disarmed</h1>
+  </md-toolbar>
+  <div layout="row" flex>
+    {{{svg}}}
+  </div>
 </body>
 </html>

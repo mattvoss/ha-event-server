@@ -18,15 +18,17 @@
 
 
 .core {
-	fill:red;
+  fill:red;
 }
 
 .ring {
-opacity: 0;
-stroke: red;
- -webkit-transform-origin: center;
- -webkit-animation: anim-pulse 2s 1s infinite;
- }
+  opacity: 0;
+  stroke: red;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -webkit-transform-origin: center;
+  -webkit-animation: anim-pulse 2s 1s infinite;
+}
 
 .wrapper {
 	float: left;

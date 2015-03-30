@@ -144,7 +144,11 @@
                         stat = status[unit];
                     house = "0x"+out.toString('hex',0,1);
                     uc = "";
-                    action = stat.action;
+                    if ("action" in stat) {
+                      action = stat.action;
+                    } else {
+                      action = null;
+                    }
 
                   } else if (out[0] === (~out[1] & 0xff) && out[2] === (~out[3] & 0xff)) {
 
